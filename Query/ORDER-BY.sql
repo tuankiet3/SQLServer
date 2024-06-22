@@ -1,0 +1,11 @@
+﻿USE NORTHWND;
+-- ASC SẮP XẾP TĂNG DẦN (DEFAULT)
+-- DESC SẮP XẾP GIẢM DẦN
+-- LIỆT KÊ CÁC NHÀ CUNG CẤP THEO THỨ TỰ TÊN ĐƠN VỊ(COMPANYNAME) TỪ A-Z
+SELECT * FROM Suppliers ORDER BY CompanyName; 
+-- LIỆT KÊ CÁC PHẨM THEO THỨ TỰ GIÁ GIẢM DẦN TỪ BẢNG PRODUCT
+SELECT * FROM Products ORDER BY UnitPrice DESC;
+-- LIỆT KÊ TẤT CẢ NHÂN THEO THỨ TỰ HỌ VÀ TÊN ĐỆM A-Z
+SELECT * FROM Employees ORDER BY FirstName, LastName;
+-- LẤY RA SẢN PHẨM CÓ SỐ LƯỢNG BÁN CAO NHẤT TỪ BẢNG ORDER DETAILS
+SELECT TOP 1 * FROM [Order Details] ORDER BY Quantity DESC;

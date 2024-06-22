@@ -1,0 +1,17 @@
+﻿USE NORTHWND;
+-- ĐẾM SỐ LƯỢNG KHÁCH HÀNG CÓ TRONG BẢNG CUSTOMERS;
+SELECT CustomerID FROM Customers
+SELECT COUNT (CustomerID) FROM dbo.Customers;
+-- TÍNH TỔNG TIỀN VẬN CHUYỂN CỦA TẤT CẢ ĐƠN HÀNG TRONG BẢNG ORDERS
+SELECT SUM (Freight) FROM dbo.Orders;
+-- TÍNH TRUNG BÌNH SỐ LƯỢNG ĐẶT HÀNG CỦA TẤT CẢ SẢN PHẨM TRONG BẢNG ORDER DETAILS
+SELECT AVG (Quantity) FROM [Order Details];
+-- ĐẾM SỐ LƯỢNG, TÍNH TỐNG SỐ HÀNG TỒN KHO VÀ GIÁ TRUNG BÌNH CỦA CÁC SẢN PHẨM CÓ TRONG BẢNG PRODUCT
+SELECT COUNT (*) AS "SỐ LƯỢNG HÀNG TỒN KHO",
+SUM (UnitsInStock) AS "TỔNG HÀNG TỒN KHO",
+AVG (UnitPrice) AS "GIÁ TRUNG BÌNH"
+FROM Products;
+-- ĐẾM SỐ LƯỢNG ĐƠN HÀNG TỪ BẢNG ORDER THEO 2 CÁCH * VÀ MADONHANG
+SELECT COUNT (*) FROM Orders;
+SELECT COUNT (OrderID) FROM Orders;
+

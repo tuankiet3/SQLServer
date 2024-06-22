@@ -1,0 +1,43 @@
+﻿USE NORTHWND;
+-- HÃY CHO BIẾT CÁC KHÁCH HÀNG ĐÃ ĐẶT NHIỀU HƠN 20 ĐƠN HÀNG SẮP XẾP THEO TỔNG SỐ ĐƠN HÀNG GIẢM DẦN
+SELECT CustomerID, COUNT(OrderID)
+FROM Orders
+GROUP BY CustomerID
+HAVING COUNT(OrderID) > 20
+ORDER BY COUNT(OrderID) DESC;
+-- HÃY LỌC RA CÁC NHÂN VIÊN CÓ TỔNG SỐ ĐƠN HÀNG HOẶC BẰNG 100 SẮP XẾP THEO TỔNG SỐ ĐƠN GIẢM DẦN
+SELECT EmployeeID, COUNT(OrderID)
+FROM Orders
+GROUP BY EmployeeID
+HAVING COUNT(OrderID) >= 100
+ORDER BY COUNT(OrderID) DESC;
+--HÃY CHO BIẾT CÁC THỂ LOẠI NÀO CÓ CÁC SẢN PHẨM KHÁC NHAU > 11
+SELECT CategoryID, COUNT(ProductID)
+FROM Products
+GROUP BY CategoryID
+HAVING COUNT(ProductID) > 11;
+--HÃY CHO BIẾT NHỮNG QUỐC GIA NÀO CÓ NHIỀU HƠN 7 ĐƠN HÀNG
+SELECT ShipCountry, COUNT(CustomerID) AS [TotalOrders]
+FROM Orders
+GROUP BY ShipCountry
+HAVING COUNT(CustomerID) > 7
+ORDER BY COUNT(CustomerID);
+-- HÃY CHO BIẾT NHỮNG NGÀY NÀO CÓ > 5 ĐƠN HÀNG ĐƯỢC GIAO, SẮP XẾP TĂNG DẦN THEO NGÀY GIAO HÀNG
+SELECT ShippedDate, COUNT(*) 
+FROM Orders
+GROUP BY ShippedDate
+HAVING COUNT(*) > 5
+ORDER BY ShippedDate;
+-- CHO BIẾT NHỮNG QUỐC GIA CÓ CHỮ A HOẶC G VÀ CÓ SỐ LƯỢNG ĐƠN HÀNG > 29
+SELECT ShipCountry, COUNT(OrderID)
+FROM Orders
+WHERE ShipCountry LIKE 'A%' OR ShipCountry LIKE 'G%'
+GROUP BY ShipCountry
+HAVING COUNT(OrderID) > 29;
+-- HÃY CHO BIẾT NHỮNG THÀNH PHỐ CÓ SỐ LƯỢNG ĐƠN HÀNG ĐƯỢC GIAO KHÁC 1 VÀ 2, NGÀY ĐẶT TỪ
+-- 1997-04-1 -> 1997-08-31
+SELECT ShipCity, COUNT(OrderID)
+FROM Orders
+WHERE OrderDate BETWEEN '1997-04-01' AND '1997-08-31'
+GROUP BY ShipCity
+HAVING COUNT(OrderID) <> 1 AND COUNT(OrderID) <> 2;

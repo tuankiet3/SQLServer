@@ -1,0 +1,25 @@
+﻿USE NORTHWND;
+-- HÃY CHO BIẾT NHỮNG KHÁCH HÀNG ĐẶT NHIỀU HƠN 20 ĐƠN HÀNG SẮP XẾP THEO TỔNG SỐ ĐƠN HÀNG GIẢM DẦN
+SELECT CustomerID, COUNT(OrderID) AS [TotalOrders] 
+FROM Orders
+GROUP BY CustomerID
+HAVING COUNT(OrderID) > 20
+ORDER BY COUNT(OrderID) DESC;
+-- HÃY LỌC RA CÁC NHÀ CUNG CẤP CÓ TỔNG LƯỢNG HÀNG TRONG KHO > 30 VÀ TRUNG BÌNH ĐƠN GIÁ CÓ GIÁ TRỊ < 50
+SELECT SupplierID, SUM(UnitsInStock), AVG(UnitPrice)
+FROM Products
+GROUP BY SupplierID
+HAVING SUM(UnitsInStock) > 30 AND AVG(UnitPrice) < 50;
+-- HÃY CHO BIẾT TỔNG TIỀN VẬN CHUYỂN CỦA TỪNG THÁNG TRONG NỬA NĂM SAU CỦA NĂM 1996, SẮP XẾP THEO 
+-- THÁNG TĂNG DẦN
+SELECT MONTH(ShippedDate), SUM(Freight)
+FROM Orders
+WHERE ShippedDate BETWEEN '1996-07-01' AND '1996-12-31'
+GROUP BY MONTH(ShippedDate)
+ORDER BY MONTH(ShippedDate);
+--HÃY LỌC RA NHỮNG THÀNH PHỐ CÓ SỐ LƯỢNG ĐƠN HÀNG > 16 VÀ SẮP XẾP THEO TỔNG SỐ LƯỢNG GIẢM DẦN
+SELECT ShipCity, COUNT(OrderID)
+FROM Orders
+GROUP BY ShipCity
+HAVING COUNT(OrderID) > 16
+ORDER BY COUNT(OrderID) DESC;
